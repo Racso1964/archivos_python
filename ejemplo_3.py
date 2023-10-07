@@ -7,8 +7,8 @@
 import csv
 
 
-def altura_promedio(genero):
-    print("¡Ejemplo integrador!")
+def calcular_promedio(objetivo):
+    #print("¡Ejemplo integrador!")
     # Esta función recibe el género del cual
     # se debe calcular la altura promedio
     # puede ser --> femenino o masculino
@@ -28,6 +28,29 @@ def altura_promedio(genero):
     # --- Comience aquí a desarrollar su código ---
 
 
+    with  open('alturas.csv', mode='r') as csvfile:
+        data = list(csv.DictReader(csvfile))
+
+    #condicionar la entrada de la variable genero
+
+    with  open('alturas.csv', mode='r') as csvfile:
+        data = list(csv.DictReader(csvfile))
+
+    #condicionar la entrada de la variable genero
+
+   
+
+    valor = 0
+    contador = 0
+    for fila in data:
+        if fila.get("genero").lower() == objetivo:
+            valor += float(fila.get("altura", 0.0))
+            contador += 1
+    return valor/contador  
+
+
 if __name__ == '__main__':
-    print("Bienvenidos a otra clase de Inove con Python")
-    altura_promedio("femenino")
+   
+   genero = str(input("Ingrese el nombre del genero:\n").lower())
+   promedio = calcular_promedio(genero)
+   print(f"El promedio de la altura es:{promedio}")
